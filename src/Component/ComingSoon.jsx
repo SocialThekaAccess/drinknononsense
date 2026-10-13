@@ -1,28 +1,10 @@
-import { useEffect, useState } from 'react'
 import './ComingSoon.css'
 
-function ComingSoon({ onComplete }) {
-  const [fadeOut, setFadeOut] = useState(false)
-
-  useEffect(() => {
-    // After 3 seconds, start fade out
-    const timer1 = setTimeout(() => {
-      setFadeOut(true)
-    }, 3000)
-
-    // After fade out completes, call onComplete
-    const timer2 = setTimeout(() => {
-      onComplete()
-    }, 3800)
-
-    return () => {
-      clearTimeout(timer1)
-      clearTimeout(timer2)
-    }
-  }, [onComplete])
+function ComingSoon() {
+  // No timers - page stays visible with pulsing animation
 
   return (
-    <div className={`coming-soon-overlay ${fadeOut ? 'fade-out' : ''}`}>
+    <div className="coming-soon-overlay">
       <div className="coming-soon-content">
         {/* Animated logo/brand */}
         <div className="cs-logo-container">

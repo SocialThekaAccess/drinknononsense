@@ -23,7 +23,7 @@
   text-align: center;
   position: relative;
   z-index: 2;
-  animation: contentFadeIn 1s ease-out;
+  animation: contentFadeIn 1s ease-out, breathingPulse 2s ease-in-out 1s infinite;
 }
 
 /* Logo container with glow */
@@ -218,6 +218,19 @@
   }
   66% {
     transform: translate(-20px, 20px);
+  }
+}
+
+/* Breathing pulse effect - fade in/out continuously */
+@keyframes breathingPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
