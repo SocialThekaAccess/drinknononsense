@@ -678,7 +678,7 @@ function OurFlavours() {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                   />
                 )}
               </div>
@@ -760,12 +760,13 @@ function OurFlavours() {
                     className="fl-sway"
                     style={{ transform: `rotateY(${i === active ? num(sway, 2) : 0}deg)` }}
                   >
-                    {/* 3D Model iframe instead of image */}
+                    {/* 3D Model iframe with lazy loading */}
                     <iframe
                       src={f.model3D}
                       title={`3D ${f.title}`}
                       className={`fl-img fl-3d-model ${imgState}`}
                       sandbox="allow-scripts allow-same-origin"
+                      loading="lazy"
                     />
                   </div>
                 </div>
