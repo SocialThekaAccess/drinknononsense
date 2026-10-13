@@ -4,6 +4,11 @@ import mangoDrink from '../assets/MangoDrink (2).png'
 import coffeeCola from '../assets/CoffeeCola (2).png'
 import classicWild from '../assets/ClassicWildDrink.png'
 
+// 3D HTML Models paths
+const mango3D = '/src/Component/Can3DMango.html'
+const coffee3D = '/src/Component/3DCanCoffeecola.html'
+const classic3D = '/src/Component/3DCanClassicWildBerry.html'
+
 // Videos public folder me hain, isliye seedha '/' se path (import nahi)
 const mangoVideo = '/MangoDrink.mp4'
 const coffeeVideo = '/Beverage_can_product_commercial_20261005110710.mp4'
@@ -26,6 +31,7 @@ const baseFlavours = [
   {
     id: 'mango',
     img: mangoDrink,
+    model3D: mango3D,
     alt: 'Mango Mayhem',
     title: 'MANGO MAYHEM',
     subtitle: 'A Little Tropical, A lot of Trouble',
@@ -39,6 +45,7 @@ const baseFlavours = [
   {
     id: 'coffee',
     img: coffeeCola,
+    model3D: coffee3D,
     alt: 'Coffee Cola',
     title: 'COFFEE COLA',
     subtitle: 'Coffee meets cola, Chaos Follows',
@@ -52,6 +59,7 @@ const baseFlavours = [
   {
     id: 'classic',
     img: classicWild,
+    model3D: classic3D,
     alt: 'Classic Wild Berry',
     title: 'CLASSIC WILD BERRY',
     subtitle: 'Berry Bold Never Basic',
@@ -648,7 +656,7 @@ function OurFlavours() {
             })}
           </div>
 
-          {/* ---------- Focus frame (rounded colour panel) ---------- */}
+          {/* ---------- Focus frame (rounded colour panel with 3D model) ---------- */}
           <div
             className="fl-frame"
             style={{
@@ -662,6 +670,7 @@ function OurFlavours() {
                 className={`fl-frame-bg ${i === active ? 'is-active' : ''}`}
                 style={{ background: f.bg }}
               >
+                {/* Removed 3D iframe from focus frame - only video background */}
                 {SHOW_VIDEO && (
                   <video
                     ref={(el) => (videoRefs.current[i] = el)}
@@ -751,7 +760,13 @@ function OurFlavours() {
                     className="fl-sway"
                     style={{ transform: `rotateY(${i === active ? num(sway, 2) : 0}deg)` }}
                   >
-                    <img src={f.img} alt={f.alt} className={`fl-img ${imgState}`} />
+                    {/* 3D Model iframe instead of image */}
+                    <iframe
+                      src={f.model3D}
+                      title={`3D ${f.title}`}
+                      className={`fl-img fl-3d-model ${imgState}`}
+                      sandbox="allow-scripts allow-same-origin"
+                    />
                   </div>
                 </div>
               </div>
