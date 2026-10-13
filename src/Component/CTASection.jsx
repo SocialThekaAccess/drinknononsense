@@ -6,7 +6,7 @@ const CTA_HREF = '#final'
 const CTA_LABEL = 'Grab your can'
 
 const CHIPS = [
-  { big: '2.4g', small: 'Protein' },
+  { big: '6g', small: 'Protein' },
   { big: '75mg', small: 'Caffeine' },
   { big: '0g', small: 'Added sugar' },
 ]
