@@ -4,10 +4,10 @@ import mangoDrink from '../assets/MangoDrink (2).png'
 import coffeeCola from '../assets/CoffeeCola (2).png'
 import classicWild from '../assets/ClassicWildDrink.png'
 
-// 3D HTML Models paths
-const mango3D = '/src/Component/Can3DMango.html'
-const coffee3D = '/src/Component/3DCanCoffeecola.html'
-const classic3D = '/src/Component/3DCanClassicWildBerry.html'
+// 3D HTML Models paths - Updated for production
+const mango3D = '/Can3DMango.html'
+const coffee3D = '/3DCanCoffeecola.html'
+const classic3D = '/3DCanClassicWildBerry.html'
 
 // Videos public folder me hain, isliye seedha '/' se path (import nahi)
 const mangoVideo = '/MangoDrink.mp4'
