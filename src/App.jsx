@@ -1,6 +1,8 @@
 import { useEffect, lazy, Suspense, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import ComingSoon from './Component/ComingSoon'
+import Scanner from './Component/Scanner'
 
 // Website components (currently disabled - will be enabled when product launches)
 // import Header from './Component/Header'
@@ -15,7 +17,10 @@ function App() {
 
   return (
     <div className="app">
-      <ComingSoon onComplete={() => {}} />
+      <Routes>
+        <Route path="/" element={<ComingSoon onComplete={() => {}} />} />
+        <Route path="/scan" element={<Scanner />} />
+      </Routes>
     </div>
   )
 }

@@ -1,0 +1,163 @@
+.scanner-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.scanner-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.scanner-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.scanner-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.scanner-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+#qr-reader {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#qr-reader video {
+  border-radius: 10px;
+}
+
+.scan-result {
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 20px;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.scan-result h2 {
+  color: #1f2937;
+  font-size: 1.8rem;
+  margin: 0 0 30px 0;
+}
+
+.result-box {
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0 30px 0;
+}
+
+.result-label {
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.5px;
+}
+
+.result-text {
+  color: #1f2937;
+  font-size: 1.1rem;
+  font-weight: 600;
+  word-break: break-all;
+  margin: 0;
+}
+
+.scan-again-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.scan-again-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.scan-again-btn:active {
+  transform: translateY(0);
+}
+
+.scanner-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+  opacity: 0.8;
+}
+
+.scanner-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .scanner-header h1 {
+    font-size: 2rem;
+  }
+
+  .scanner-header p {
+    font-size: 1rem;
+  }
+
+  .scanner-content {
+    padding: 25px;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .scan-result h2 {
+    font-size: 1.5rem;
+  }
+}
