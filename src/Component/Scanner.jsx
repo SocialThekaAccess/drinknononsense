@@ -10,11 +10,6 @@ function Scanner() {
       {/* Header */}
       <header className="scan-header">
         <div className="scan-brand">NO NONSENSE</div>
-        <div className="scan-tagline-wrap">
-          <span className="scan-line" />
-          <span className="scan-tagline">SCANNER</span>
-          <span className="scan-line" />
-        </div>
       </header>
 
       {/* Company Details */}
