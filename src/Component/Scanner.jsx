@@ -1,141 +1,110 @@
-import { useEffect, useRef, useState } from 'react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
 import './Scanner.css';
 
 function Scanner() {
-  const [scanResult, setScanResult] = useState(null);
-  const [isScanning, setIsScanning] = useState(true);
-  const scannerRef = useRef(null);
-
-  useEffect(() => {
-    const scanner = new Html5QrcodeScanner('qr-reader', {
-      qrbox: { width: 280, height: 280 },
-      fps: 5,
-    });
-
-    scanner.render(onScanSuccess, onScanError);
-
-    function onScanSuccess(decodedText, decodedResult) {
-      setScanResult(decodedText);
-      setIsScanning(false);
-      scanner.clear();
-    }
-
-    function onScanError(error) {
-      // Silent
-    }
-
-    scannerRef.current = scanner;
-
-    return () => {
-      if (scannerRef.current) {
-        scannerRef.current.clear();
-      }
-    };
-  }, []);
-
-  const resetScanner = () => {
-    setScanResult(null);
-    setIsScanning(true);
-    window.location.reload();
-  };
-
   return (
     <div className="scanner-page">
-      {/* Animated Background Elements */}
-      <div className="scan-bg-decoration scan-decoration-1"></div>
-      <div className="scan-bg-decoration scan-decoration-2"></div>
-      <div className="scan-bg-decoration scan-decoration-3"></div>
+      <div className="scan-bg-decoration scan-decoration-1" />
+      <div className="scan-bg-decoration scan-decoration-2" />
+      <div className="scan-bg-decoration scan-decoration-3" />
 
       {/* Header */}
-      <div className="scan-header">
+      <header className="scan-header">
         <div className="scan-brand">NO NONSENSE</div>
-        <div className="scan-tagline">SCANNER</div>
-      </div>
+        <div className="scan-tagline-wrap">
+          <span className="scan-line" />
+          <span className="scan-tagline">SCANNER</span>
+          <span className="scan-line" />
+        </div>
+      </header>
 
-      {/* Scanner Content */}
-      <div className="scan-content">
-        {isScanning ? (
-          <div className="scan-camera-section">
-            <div className="scan-title">SCAN YOUR CODE</div>
-            <div className="scan-subtitle">QR Code • Barcode • Product Code</div>
-            <div id="qr-reader" className="qr-reader-container"></div>
-          </div>
-        ) : (
-          <div className="scan-result-section">
-            <div className="scan-success-icon">✓</div>
-            <div className="scan-success-title">SCAN COMPLETE</div>
-            <div className="scan-result-box">
-              <div className="scan-result-label">SCANNED CODE</div>
-              <div className="scan-result-text">{scanResult}</div>
-            </div>
-            <button onClick={resetScanner} className="scan-btn">
-              SCAN AGAIN
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Company Details Section */}
-      <div className="scan-details-container">
+      {/* Company Details */}
+      <section className="scan-details-container">
         {/* Manufacturer */}
-        <div className="scan-detail-card">
+        <article className="scan-detail-card">
+          <div className="scan-card-tag">01</div>
           <div className="scan-detail-header">
-            <div className="scan-icon">🏭</div>
+            <div className="scan-icon-badge">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 21V9l6 4V9l6 4V5h3v16z" />
+                <path d="M3 21h18" />
+              </svg>
+            </div>
             <div className="scan-detail-title">MANUFACTURED BY</div>
           </div>
+
           <div className="scan-company-name">PATEL BEVERAGES</div>
           <div className="scan-company-subtitle">PRIVATE LIMITED</div>
-          <div className="scan-detail-divider"></div>
+
+          <div className="scan-detail-divider" />
+
           <div className="scan-address">
-            <div className="scan-address-icon">📍</div>
+            <svg className="scan-address-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" />
+              <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
             <div className="scan-address-text">
               <div>No.: 505/2,3-4,</div>
               <div>GIDC Estate Makarpura,</div>
-              <div>Vadodara, Gujarat-390010</div>
+              <div>Vadodara, Gujarat – 390010</div>
             </div>
           </div>
+
           <div className="scan-license">
-            <div className="scan-license-label">LIC NO.</div>
+            <div className="scan-license-label">FSSAI LIC NO.</div>
             <div className="scan-license-number">10013021000941</div>
           </div>
-        </div>
+        </article>
 
         {/* Marketer */}
-        <div className="scan-detail-card scan-marketer-card">
+        <article className="scan-detail-card scan-marketer-card">
+          <div className="scan-card-tag">02</div>
           <div className="scan-detail-header">
-            <div className="scan-icon">📢</div>
+            <div className="scan-icon-badge">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 11v2a1 1 0 0 0 1 1h3l8 4V6L7 10H4a1 1 0 0 0-1 1z" />
+                <path d="M18.5 9a4 4 0 0 1 0 6" />
+              </svg>
+            </div>
             <div className="scan-detail-title">MARKETED BY</div>
           </div>
+
           <div className="scan-company-name">
             FLAVOR<span className="scan-red">ON</span>
           </div>
           <div className="scan-company-subtitle">FOOD AND BEVERAGES</div>
-          <div className="scan-detail-divider"></div>
+
+          <div className="scan-detail-divider" />
+
           <div className="scan-address">
-            <div className="scan-address-icon">📍</div>
+            <svg className="scan-address-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" />
+              <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
             <div className="scan-address-text">
               <div>A6 602, Purab Apartments,</div>
               <div>Sector 88, Sahibzada Ajit Singh</div>
               <div>Nagar, Punjab – 140308</div>
             </div>
           </div>
-          <div className="scan-location-pin">
-            <div className="scan-pin-icon">🏢</div>
-            <div className="scan-pin-text">Punjab</div>
+
+          <div className="scan-chip-row">
+            <div className="scan-chip">
+              <span className="scan-chip-label">STATE</span>
+              <span className="scan-chip-value">PUNJAB</span>
+            </div>
+            <div className="scan-chip scan-chip-accent">
+              <span className="scan-chip-label">PIN CODE</span>
+              <span className="scan-chip-value">140308</span>
+            </div>
           </div>
-          <div className="scan-pincode">
-            <div className="scan-pincode-icon">📮</div>
-            <div className="scan-pincode-text">PIN CODE: 140308</div>
-          </div>
-        </div>
-      </div>
+        </article>
+      </section>
 
       {/* Footer */}
-      <div className="scan-footer">
+      <footer className="scan-footer">
         <div className="scan-footer-text">© 2026 NO NONSENSE</div>
         <div className="scan-footer-tagline">Big Energy • Zero Nonsense</div>
-      </div>
+      </footer>
     </div>
   );
 }
