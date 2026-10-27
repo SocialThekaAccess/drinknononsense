@@ -1,163 +1,599 @@
-.scanner-container {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap');
+
+.scanner-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #0a0a0a 100%);
+  font-family: 'Bebas Neue', sans-serif;
+  color: #ffffff;
+  padding: 30px 20px 40px;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.scanner-header {
-  text-align: center;
-  color: white;
-  margin-bottom: 30px;
-}
-
-.scanner-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.scanner-header p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin: 0;
-}
-
-.scanner-content {
-  background: white;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  width: 100%;
-}
-
-#qr-reader {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#qr-reader video {
-  border-radius: 10px;
-}
-
-.scan-result {
-  text-align: center;
-}
-
-.success-icon {
-  width: 80px;
-  height: 80px;
-  background: #10b981;
-  color: white;
+/* ===== ANIMATED BACKGROUND ===== */
+.scan-bg-decoration {
+  position: fixed;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  margin: 0 auto 20px;
-  animation: scaleIn 0.5s ease-out;
+  opacity: 0.03;
+  animation: float 20s infinite ease-in-out;
+  z-index: 0;
+}
+
+.scan-decoration-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #c41e1e 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation-delay: 0s;
+}
+
+.scan-decoration-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #d32f2f 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  animation-delay: 5s;
+}
+
+.scan-decoration-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #8b0000 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+/* ===== HEADER ===== */
+.scan-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 10;
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scan-brand {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(196, 30, 30, 0.6), 0 0 60px rgba(196, 30, 30, 0.3);
+  margin-bottom: 5px;
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 30px rgba(196, 30, 30, 0.6), 0 0 60px rgba(196, 30, 30, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(196, 30, 30, 0.8), 0 0 80px rgba(196, 30, 30, 0.5);
+  }
+}
+
+.scan-tagline {
+  font-size: 1.8rem;
+  letter-spacing: 6px;
+  color: #c41e1e;
+  font-weight: 500;
+}
+
+/* ===== SCANNER CONTENT ===== */
+.scan-content {
+  max-width: 550px;
+  margin: 0 auto 50px;
+  position: relative;
+  z-index: 10;
+  animation: scaleIn 0.6s ease-out 0.2s both;
 }
 
 @keyframes scaleIn {
   from {
-    transform: scale(0);
+    opacity: 0;
+    transform: scale(0.8);
   }
   to {
+    opacity: 1;
     transform: scale(1);
   }
 }
 
-.scan-result h2 {
-  color: #1f2937;
-  font-size: 1.8rem;
-  margin: 0 0 30px 0;
+.scan-camera-section {
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 2px solid #c41e1e;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 0 40px rgba(196, 30, 30, 0.4), 0 10px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
 }
 
-.result-box {
-  background: #f3f4f6;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0 30px 0;
+.scan-camera-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c41e1e, transparent);
+  animation: scan-line 3s linear infinite;
 }
 
-.result-label {
-  color: #6b7280;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin: 0 0 10px 0;
-  letter-spacing: 0.5px;
+@keyframes scan-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
-.result-text {
-  color: #1f2937;
+.scan-title {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.scan-subtitle {
   font-size: 1.1rem;
-  font-weight: 600;
-  word-break: break-all;
-  margin: 0;
+  color: #c41e1e;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
-.scan-again-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.qr-reader-container {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 3px solid #c41e1e;
+  box-shadow: 0 0 30px rgba(196, 30, 30, 0.3);
+}
+
+#qr-reader {
+  border-radius: 12px;
+}
+
+#qr-reader video {
+  border-radius: 12px;
+}
+
+/* ===== SCAN RESULT ===== */
+.scan-result-section {
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 2px solid #10b981;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.3), 0 10px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.scan-success-icon {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 3.5rem;
+  color: white;
+  animation: successPulse 1s ease-out;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.scan-success-title {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  color: #10b981;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.scan-result-box {
+  background: #0a0a0a;
+  border: 2px solid #2d1810;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px 0 35px;
+}
+
+.scan-result-label {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #c41e1e;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.scan-result-text {
+  font-size: 1.3rem;
+  color: #ffffff;
+  word-break: break-all;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.scan-btn {
+  background: linear-gradient(135deg, #c41e1e 0%, #8b0000 100%);
   color: white;
   border: none;
-  padding: 15px 40px;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 16px 50px;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-family: 'Bebas Neue', sans-serif;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(196, 30, 30, 0.5), 0 5px 20px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
 }
 
-.scan-again-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+.scan-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(196, 30, 30, 0.8), 0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
-.scan-again-btn:active {
-  transform: translateY(0);
+.scan-btn:active {
+  transform: translateY(-1px);
 }
 
-.scanner-footer {
-  margin-top: 30px;
-  text-align: center;
-  color: white;
-  opacity: 0.8;
+/* ===== COMPANY DETAILS ===== */
+.scan-details-container {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 10;
+  animation: slideUp 0.8s ease-out 0.4s both;
 }
 
-.scanner-footer p {
-  margin: 0;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scan-detail-card {
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 2px solid #2d1810;
+  border-radius: 20px;
+  padding: 35px 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-detail-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(196, 30, 30, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.scan-detail-card:hover {
+  transform: translateY(-8px);
+  border-color: #c41e1e;
+  box-shadow: 0 0 40px rgba(196, 30, 30, 0.4), 0 15px 50px rgba(0, 0, 0, 0.7);
+}
+
+.scan-detail-card:hover::before {
+  left: 100%;
+}
+
+.scan-marketer-card {
+  border-color: #c41e1e;
+}
+
+.scan-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.scan-icon {
+  font-size: 2rem;
+}
+
+.scan-detail-title {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: #c41e1e;
+  font-weight: 700;
+}
+
+.scan-company-name {
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  color: #ffffff;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.scan-red {
+  color: #c41e1e;
+}
+
+.scan-company-subtitle {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: #888888;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.scan-detail-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c41e1e, transparent);
+  margin: 20px 0;
+}
+
+.scan-address {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.scan-address-icon {
+  font-size: 1.5rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.scan-address-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cccccc;
+  text-align: left;
+  font-weight: 400;
+}
+
+.scan-license {
+  background: #0a0a0a;
+  border: 1px solid #2d1810;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.scan-license-label {
   font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: #c41e1e;
+  margin-bottom: 8px;
+  font-weight: 700;
 }
 
-/* Mobile Responsive */
-@media (max-width: 640px) {
-  .scanner-header h1 {
+.scan-license-number {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.scan-location-pin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0a0a0a;
+  border: 1px solid #2d1810;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-top: 15px;
+}
+
+.scan-pin-icon {
+  font-size: 1.3rem;
+}
+
+.scan-pin-text {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.scan-pincode {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0a0a0a;
+  border: 1px solid #c41e1e;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-top: 12px;
+}
+
+.scan-pincode-icon {
+  font-size: 1.3rem;
+}
+
+.scan-pincode-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===== */
+.scan-footer {
+  text-align: center;
+  padding: 25px 20px;
+  position: relative;
+  z-index: 10;
+  animation: fadeIn 1s ease-out 0.6s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.scan-footer-text {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  color: #888888;
+  margin-bottom: 5px;
+}
+
+.scan-footer-tagline {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #c41e1e;
+  font-weight: 500;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .scanner-page {
+    padding: 20px 15px 30px;
+  }
+
+  .scan-brand {
+    font-size: 2.8rem;
+    letter-spacing: 5px;
+  }
+
+  .scan-tagline {
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+  }
+
+  .scan-title {
+    font-size: 2rem;
+    letter-spacing: 3px;
+  }
+
+  .scan-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .scan-camera-section,
+  .scan-result-section {
+    padding: 25px 20px;
+  }
+
+  .scan-success-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+  }
+
+  .scan-success-title {
     font-size: 2rem;
   }
 
-  .scanner-header p {
-    font-size: 1rem;
+  .scan-btn {
+    padding: 14px 40px;
+    font-size: 1.3rem;
   }
 
-  .scanner-content {
-    padding: 25px;
+  .scan-details-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 
-  .success-icon {
-    width: 60px;
-    height: 60px;
+  .scan-detail-card {
+    padding: 28px 22px;
+  }
+
+  .scan-company-name {
     font-size: 2rem;
   }
 
-  .scan-result h2 {
-    font-size: 1.5rem;
+  .scan-company-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .scan-decoration-1,
+  .scan-decoration-2,
+  .scan-decoration-3 {
+    opacity: 0.02;
+  }
+}
+
+@media (max-width: 480px) {
+  .scan-brand {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+
+  .scan-tagline {
+    font-size: 1.1rem;
+  }
+
+  .scan-title {
+    font-size: 1.6rem;
+  }
+
+  .scan-company-name {
+    font-size: 1.8rem;
   }
 }
