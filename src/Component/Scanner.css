@@ -187,6 +187,13 @@
   border-radius: 12px;
 }
 
+/* Hide file upload button */
+#qr-reader__dashboard_section_swaplink,
+#qr-reader__filescan_input,
+#qr-reader__dashboard_section_fsr {
+  display: none !important;
+}
+
 /* ===== SCAN RESULT ===== */
 .scan-result-section {
   background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
