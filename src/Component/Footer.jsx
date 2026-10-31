@@ -5,7 +5,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <img src="/logo.png" alt="No Nonsense" />
+          <img src="/logo.png" alt="No Nonsense" loading="lazy" />
         </div>
         
         <p className="footer-brand">NO NONSENSE — NOT YOUR ORDINARY DRINK.</p>

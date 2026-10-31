@@ -12,7 +12,7 @@ function Header() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
           />
         </div>
       </div>

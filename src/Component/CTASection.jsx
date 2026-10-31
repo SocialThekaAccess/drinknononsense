@@ -66,6 +66,7 @@ function CTASection() {
             src="/ZombieSkullScoop.png"
             alt="Zombie skull scoop spilling protein powder"
             className="zombie-skull-img"
+            loading="lazy"
           />
         </div>
       </div>

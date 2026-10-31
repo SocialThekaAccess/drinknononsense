@@ -10,6 +10,8 @@ function VideoSection({ videoSrc }) {
         loop
         muted
         playsInline
+        preload="none"
+        loading="lazy"
       />
     </section>
   )

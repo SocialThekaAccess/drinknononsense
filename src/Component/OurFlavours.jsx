@@ -522,9 +522,9 @@ function FinalCTA() {
 
         {/* teeno cans ek saath */}
         <div className="fl-final-cans">
-          <img src={byId.mango.img} alt={byId.mango.alt} className="fl-fc fl-fc-1" />
-          <img src={byId.coffee.img} alt={byId.coffee.alt} className="fl-fc fl-fc-2" />
-          <img src={byId.classic.img} alt={byId.classic.alt} className="fl-fc fl-fc-3" />
+          <img src={byId.mango.img} alt={byId.mango.alt} className="fl-fc fl-fc-1" loading="lazy" />
+          <img src={byId.coffee.img} alt={byId.coffee.alt} className="fl-fc fl-fc-2" loading="lazy" />
+          <img src={byId.classic.img} alt={byId.classic.alt} className="fl-fc fl-fc-3" loading="lazy" />
         </div>
 
         <p className="fl-final-pick">PICK YOUR CHAOS</p>
@@ -679,6 +679,7 @@ function OurFlavours() {
                     loop
                     playsInline
                     preload="none"
+                    loading="lazy"
                   />
                 )}
               </div>

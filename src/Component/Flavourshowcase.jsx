@@ -139,6 +139,7 @@ function FlavourShowcase() {
                     className={`showcase-img ${
                       i === active ? 'is-active' : i < active ? 'is-before' : 'is-after'
                     }`}
+                    loading="lazy"
                   />
                 ))}
               </div>
