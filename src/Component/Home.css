@@ -1,18 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 /* ============================================
-   HERO - full screen video, text cans ke bahar
+   HERO - full width poster, 16:9 (YouTube thumbnail size)
    top: headline | bottom-left: tagline + CTA | bottom-right: specs
    ============================================ */
 .hero {
   --sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-family: var(--sans);
   position: relative;
-  height: 100vh;
-  min-height: 100vh;
-  background: #000000;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #b30000;
   overflow: hidden;
   color: #ffffff;
+}
+
+/* ---------- Poster image: poori width, corners tak, koi crop nahi ---------- */
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------- Video ---------- */
