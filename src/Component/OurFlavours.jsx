@@ -20,6 +20,10 @@ const SHOW_VIDEO = true
 
 const CTA_LABEL = 'Discover the flavour'
 
+// Mobile pe 3D: focus phase me active can hamesha 3D.
+// Lineup (teeno cans) me bhi 3D chahiye to true karo (phone pe heavy ho sakta hai).
+const MOBILE_LINEUP_3D = false
+
 // "THE FLAVOURS" ki jagah moving marquee ka text
 const MARQUEE_TEXT =
   'ZERO NONSENSE • PROTEIN-INFUSED • ZERO NONSENSE • PROTEIN-INFUSED • ZERO NONSENSE • PROTEIN-INFUSED • '
@@ -787,8 +791,8 @@ function OurFlavours() {
                     className="fl-sway"
                     style={{ transform: `rotateY(${i === active ? num(sway, 2) : 0}deg)` }}
                   >
-                    {isMobile ? (
-                      /* MOBILE: 3D iframe nahi, seedhi PNG (front side, no white box) */
+                    {isMobile && !MOBILE_LINEUP_3D && !(phaseB && i === active) ? (
+                      /* MOBILE lineup: halki PNG (3 WebGL iframes phone pe heavy hote hain) */
                       <img
                         src={f.img}
                         alt={f.alt}
@@ -796,7 +800,7 @@ function OurFlavours() {
                         draggable="false"
                       />
                     ) : (
-                      /* DESKTOP: 3D model iframe */
+                      /* 3D model iframe: desktop pe sab, mobile pe sirf active can */
                       <iframe
                         src={f.model3D}
                         title={`3D ${f.title}`}

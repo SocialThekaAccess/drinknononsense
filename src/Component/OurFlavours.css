@@ -1521,4 +1521,12 @@
   .fl-frame {
     overflow: hidden;
   }
+
+  /* mobile pe 3D iframe: transparent, seedha, touch page scroll ko jaye */
+  .fl-3d-model {
+    pointer-events: none !important;
+    background: transparent !important;
+    color-scheme: light;
+    transform: none !important;
+  }
 }
