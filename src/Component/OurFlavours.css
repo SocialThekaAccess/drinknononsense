@@ -1257,6 +1257,27 @@
     left: calc(50% + 2vw);          /* PNG me can thoda left hai, isliye 2vw */
   }
 
+  /* Mobile pe 3D model ko sidha rakho - rotation mat karo */
+  .fl-stage[data-phase='B'] .fl-img {
+    opacity: 0;
+    transform: scale(0.9);  /* rotateY hata diya - sirf scale */
+    transition: opacity 0.5s ease, transform 0.6s ease;
+  }
+
+  .fl-stage[data-phase='B'] .fl-img.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fl-stage[data-phase='B'] .fl-img.is-before {
+    transform: scale(0.9);  /* rotateY hata diya */
+  }
+
+  /* 3D iframe ko mobile pe stable rakho */
+  .fl-3d-model {
+    transform: rotateY(0deg) !important;
+  }
+
   .fl-shadow {
     width: 30%;
     height: 3.5%;
@@ -1308,6 +1329,14 @@
   .fl-tag {
     padding: 0.3rem 0.65rem;
     font-size: 0.75rem;
+  }
+
+  /* Mobile pe protein badge chhota karo */
+  .fl-protein-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.1em;
   }
 
   .fl-note {
