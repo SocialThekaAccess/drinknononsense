@@ -695,6 +695,7 @@ function OurFlavours() {
                   <p className="fl-tagline">{f.subtitle}</p>
                   <h3 className="fl-content-title">{f.title}</h3>
                   <p className="fl-text">{f.text}</p>
+                  <div className="fl-protein-badge">PROTEIN</div>
                   <div className="fl-tags">
                     {f.tags.map((tg) => (
                       <span key={tg} className="fl-tag">{tg}</span>
