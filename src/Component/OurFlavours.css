@@ -1202,7 +1202,7 @@
     --W: 96vw;
     --fx: 0px;
     --fy: 0svh;
-    /* 2.55 ko badlo: bada number = bada can */
+    /* 2.1 ko badlo: bada number = bada can */
     --can-h: min(36svh, calc((var(--W) - 2 * var(--gap)) / 3 * 2.1));
   }
 
@@ -1257,10 +1257,10 @@
     left: calc(50% + 2vw);          /* PNG me can thoda left hai, isliye 2vw */
   }
 
-  /* Mobile pe 3D model ko sidha rakho - rotation mat karo */
+  /* Mobile pe can ko sidha rakho - rotation mat karo, sirf scale + fade */
   .fl-stage[data-phase='B'] .fl-img {
     opacity: 0;
-    transform: scale(0.9);  /* rotateY hata diya - sirf scale */
+    transform: scale(0.9);
     transition: opacity 0.5s ease, transform 0.6s ease;
   }
 
@@ -1269,13 +1269,9 @@
     transform: scale(1);
   }
 
-  .fl-stage[data-phase='B'] .fl-img.is-before {
-    transform: scale(0.9);  /* rotateY hata diya */
-  }
-
-  /* 3D iframe ko mobile pe stable rakho */
-  .fl-3d-model {
-    transform: rotateY(0deg) !important;
+  .fl-stage[data-phase='B'] .fl-img.is-before,
+  .fl-stage[data-phase='B'] .fl-img.is-after {
+    transform: scale(0.9);
   }
 
   .fl-shadow {
@@ -1427,7 +1423,7 @@
 }
 
 
-/* 3D Model iframe - borderless and seamless */
+/* 3D Model iframe - borderless and seamless (desktop) */
 .fl-3d-iframe {
   position: absolute;
   top: 0;
@@ -1436,6 +1432,7 @@
   height: 100%;
   border: none;
   background: transparent;
+  color-scheme: light;
   z-index: 2;
   pointer-events: auto;
   opacity: 1;
@@ -1448,6 +1445,7 @@
   height: 100%;
   border: none !important;
   background: transparent !important;
+  color-scheme: light;
   pointer-events: auto;
 }
 
@@ -1484,11 +1482,43 @@
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
 }
 
-/* Ensure 3D models are interactive */
+/* Ensure 3D models are interactive (desktop) */
 .fl-can {
   pointer-events: auto;
 }
 
 .fl-float, .fl-sway {
   pointer-events: auto;
+}
+
+/* ===== MOBILE FIX (SABSE END ME RAHE) =====
+   Mobile pe can = PNG image. Koi iframe, koi tilt, koi touch-capture. */
+@media (max-width: 900px) {
+  .fl-can {
+    perspective: none;
+    pointer-events: none;
+  }
+
+  .fl-float,
+  .fl-sway {
+    transform-style: flat;
+    pointer-events: none;
+  }
+
+  /* inline rotateY ko bhi kill karta hai */
+  .fl-sway {
+    transform: none !important;
+  }
+
+  .fl-img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* focus frame ke andar halki roshni, white patch nahi */
+  .fl-frame {
+    overflow: hidden;
+  }
 }

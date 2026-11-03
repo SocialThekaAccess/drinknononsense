@@ -132,6 +132,28 @@ function useInView(threshold = 0.25) {
   return [ref, inView]
 }
 
+// mobile / tablet (<= 900px) pe true. Wahan 3D iframe ki jagah PNG can dikhate hain.
+function useIsMobile(query = '(max-width: 900px)') {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia
+      ? window.matchMedia(query).matches
+      : false
+  )
+  useEffect(() => {
+    if (!window.matchMedia) return
+    const mq = window.matchMedia(query)
+    const onChange = (e) => setIsMobile(e.matches)
+    setIsMobile(mq.matches)
+    if (mq.addEventListener) mq.addEventListener('change', onChange)
+    else mq.addListener(onChange)
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onChange)
+      else mq.removeListener(onChange)
+    }
+  }, [query])
+  return isMobile
+}
+
 /* ============================================
    03 / WHAT'S INSIDE
    ============================================ */
@@ -544,6 +566,7 @@ function OurFlavours() {
   const trackRef = useRef(null)
   const videoRefs = useRef([])
   const [s, setS] = useState(0) // scroll position in screens: 0..TOTAL
+  const isMobile = useIsMobile()
 
   // ---------- scroll ----------
   useEffect(() => {
@@ -579,7 +602,7 @@ function OurFlavours() {
   const rel = Math.max(0, s - SF) / SEG
   const active = Math.min(N - 1, Math.floor(rel))
   const local = phaseB ? clamp(rel - active) : 0              // 0..1 current flavour ke andar
-  const sway = phaseB ? (local - 0.5) * 30 : 0                // halka 3D ghumna
+  const sway = phaseB && !isMobile ? (local - 0.5) * 30 : 0   // halka 3D ghumna (mobile pe nahi)
   const framed = t > 0.05
 
   // arrows: drink aate hi apne aap ek ke baad ek aate hain
@@ -656,7 +679,7 @@ function OurFlavours() {
             })}
           </div>
 
-          {/* ---------- Focus frame (rounded colour panel with 3D model) ---------- */}
+          {/* ---------- Focus frame (rounded colour panel with video) ---------- */}
           <div
             className="fl-frame"
             style={{
@@ -670,7 +693,6 @@ function OurFlavours() {
                 className={`fl-frame-bg ${i === active ? 'is-active' : ''}`}
                 style={{ background: f.bg }}
               >
-                {/* Removed 3D iframe from focus frame - only video background */}
                 {SHOW_VIDEO && (
                   <video
                     ref={(el) => (videoRefs.current[i] = el)}
@@ -737,6 +759,9 @@ function OurFlavours() {
             if (phaseB) opacity = i === active ? 1 : 0
             else opacity = i === 0 ? 1 : num(clamp(1 - t * 1.6), 3)
 
+            // mobile pe teeno cans lineup me dikhne chahiye (center wala bhi)
+            if (isMobile && !phaseB) opacity = num(clamp(1 - t * 1.6), 3)
+
             const imgState = !phaseB
               ? 'is-active'
               : i === active
@@ -762,14 +787,24 @@ function OurFlavours() {
                     className="fl-sway"
                     style={{ transform: `rotateY(${i === active ? num(sway, 2) : 0}deg)` }}
                   >
-                    {/* 3D Model iframe with lazy loading */}
-                    <iframe
-                      src={f.model3D}
-                      title={`3D ${f.title}`}
-                      className={`fl-img fl-3d-model ${imgState}`}
-                      sandbox="allow-scripts allow-same-origin"
-                      loading="lazy"
-                    />
+                    {isMobile ? (
+                      /* MOBILE: 3D iframe nahi, seedhi PNG (front side, no white box) */
+                      <img
+                        src={f.img}
+                        alt={f.alt}
+                        className={`fl-img ${imgState}`}
+                        draggable="false"
+                      />
+                    ) : (
+                      /* DESKTOP: 3D model iframe */
+                      <iframe
+                        src={f.model3D}
+                        title={`3D ${f.title}`}
+                        className={`fl-img fl-3d-model ${imgState}`}
+                        sandbox="allow-scripts allow-same-origin"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
