@@ -11,10 +11,10 @@ const classic3D = '/3DCanClassicWildBerry.html'
 
 // Videos public folder me hain, isliye seedha '/' se path (import nahi)
 const mangoVideo = '/MangoDrink.mp4'
-const coffeeVideo = '/Beverage_can_product_commercial_20261005110710.mp4'
-const classicVideo = '/Beverage_can_product_commercial_20261005105933.mp4'
+const coffeeVideo = '/CoffeeCola.mp4'
+const classicVideo = '/ClassicWildBerry.mp4'
 
-// Video colour frame ke andar halke texture ki tarah chalta hai.
+// Video colour frame ke peeche chalta hai.
 // Sirf colour frame chahiye to false kar do.
 const SHOW_VIDEO = true
 
@@ -683,7 +683,7 @@ function OurFlavours() {
             })}
           </div>
 
-          {/* ---------- Focus frame (rounded colour panel with video) ---------- */}
+          {/* ---------- Focus frame (rounded colour panel + background video) ---------- */}
           <div
             className="fl-frame"
             style={{
@@ -704,8 +704,7 @@ function OurFlavours() {
                     muted
                     loop
                     playsInline
-                    preload="none"
-                    loading="lazy"
+                    preload="metadata"
                   />
                 )}
               </div>

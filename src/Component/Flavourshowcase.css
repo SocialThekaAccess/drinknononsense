@@ -48,6 +48,37 @@
   background: #FAFAFA;
 }
 
+/* ---------- BACKGROUND VIDEOS ---------- */
+.showcase-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.showcase-bg-video.is-active {
+  opacity: 1;
+}
+
+/* Dark overlay for better text readability */
+.showcase-stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* ---------- CAN (center) ---------- */
 .showcase-can {
   position: absolute;
@@ -121,7 +152,8 @@
   opacity: 0;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
   z-index: 3;
-  color: #2C1810;
+  color: #FFFFFF;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .showcase-content.is-active {
@@ -159,10 +191,12 @@
 
 .showcase-tag {
   padding: 0.4rem 0.9rem;
-  border: 1.5px solid #2C1810;
+  border: 1.5px solid #FFFFFF;
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 500;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
 }
 
 /* ============ RESPONSIVE ============ */

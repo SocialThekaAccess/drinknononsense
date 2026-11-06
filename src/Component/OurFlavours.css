@@ -209,24 +209,26 @@
   opacity: 1;
 }
 
-/* can ke peeche halki roshni + text ke liye left halka dark */
+/* can ke peeche halki roshni + text ke liye left halka dark (video ke UPAR) */
 .fl-frame-bg::after {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(circle at 64% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 55%);
+    radial-gradient(circle at 64% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 55%);
 }
 
+/* BACKGROUND VIDEO: poori clear dikhti hai, can ke peeche chalti hai */
 .fl-frame-bg video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
+  opacity: 1;
+  z-index: 0;
 }
 
 /* ---------- CANS ---------- */
@@ -1286,8 +1288,8 @@
 
   .fl-frame-bg::after {
     background:
-      radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 55%),
-      linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%);
+      radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 55%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 60%);
   }
 
 
@@ -1464,22 +1466,24 @@
   transform: translateX(100px);
 }
 
-/* Hide video when 3D model is active */
+/* Active flavour ki video poori brightness me (can ke peeche) */
 .fl-frame-bg.is-active video {
-  opacity: 0.3;
-  z-index: 1;
+  opacity: 1;
 }
 
-/* Make frame more 3D-friendly */
+/* Frame: border/shadow hata ke 3D-friendly */
 .fl-frame {
   overflow: visible;
   border: none !important;
   box-shadow: none !important;
 }
 
+/* Video rounded corners ke andar hi rahe (frame overflow visible hai) */
 .fl-frame-bg {
   border: none !important;
   box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 28px;
 }
 
 /* Ensure 3D models are interactive (desktop) */
@@ -1528,5 +1532,9 @@
     background: transparent !important;
     color-scheme: light;
     transform: none !important;
+  }
+
+  .fl-frame-bg {
+    border-radius: 22px;
   }
 }

@@ -8,6 +8,7 @@ const items = [
   {
     id: 'mango',
     img: mangoDrink,
+    video: '/MangoDrink.mp4',
     title: 'MANGO MAYHEM',
     tagline: 'Tropical Energy',
     text: 'Bright mango flavour with a caffeinated protein kick. Cold, loud and zero sugar.',
@@ -16,6 +17,7 @@ const items = [
   {
     id: 'coffee',
     img: coffeeCola,
+    video: '/CoffeeCola.mp4',
     title: 'COFFEE COLA',
     tagline: 'Double Kick Energy',
     text: 'Coffee and cola in one can. Double the kick, none of the sugar.',
@@ -24,6 +26,7 @@ const items = [
   {
     id: 'classic',
     img: classicWild,
+    video: '/ClassicWildBerry.mp4',
     title: 'CLASSIC WILD BERRY',
     tagline: 'Untamed Power',
     text: 'Wild berry taste that hits hard and finishes clean. Pure classic, zero sugar.',
@@ -101,6 +104,19 @@ function FlavourShowcase() {
         style={{ height: `${(N + 1) * 100}vh` }}
       >
         <div className="showcase-stage">
+          {/* Background Videos */}
+          {items.map((it, i) => (
+            <video
+              key={`video-${it.id}`}
+              className={`showcase-bg-video ${i === active && ready ? 'is-active' : ''}`}
+              src={it.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ))}
+
           {/* Content: left se aata hai */}
           {items.map((it, i) => (
             <div
