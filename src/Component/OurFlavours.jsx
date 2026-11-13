@@ -204,6 +204,7 @@ function ArrowIcon() {
 
 // Apna cart / checkout yahan jodo (f = flavour object)
 const handleBuy = (f) => {
+  console.log('handleBuy called for:', f.id)
   // Redirect to product page based on flavour
   const productRoutes = {
     mango: '/product/mango',
@@ -212,6 +213,7 @@ const handleBuy = (f) => {
   }
   
   const route = productRoutes[f.id]
+  console.log('Redirecting to:', route)
   if (route) {
     window.location.href = route
   } else {
