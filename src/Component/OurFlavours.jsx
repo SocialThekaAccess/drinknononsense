@@ -726,6 +726,21 @@ function OurFlavours() {
                       <span key={tg} className="fl-tag">{tg}</span>
                     ))}
                   </div>
+                  
+                  {/* Price & Buy Now Button */}
+                  <div className="fl-price-section">
+                    <div className="fl-price">
+                      <span className="fl-price-currency">₹</span>
+                      <span className="fl-price-amount">200</span>
+                      <span className="fl-price-label">per can</span>
+                    </div>
+                    <button className="fl-buy-btn">
+                      <span className="fl-buy-icon">🛒</span>
+                      <span className="fl-buy-text">BUY NOW</span>
+                      <span className="fl-buy-arrow">→</span>
+                    </button>
+                  </div>
+                  
                   <a href="#stats" className="fl-cta">
                     {CTA_LABEL}
                     <span aria-hidden="true">&rarr;</span>
