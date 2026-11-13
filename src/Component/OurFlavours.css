@@ -338,6 +338,8 @@
 .fl-content.is-active > :nth-child(3) { transition-delay: 0.45s; }
 .fl-content.is-active > :nth-child(4) { transition-delay: 0.6s; }
 .fl-content.is-active > :nth-child(5) { transition-delay: 0.75s; }
+.fl-content.is-active > :nth-child(6) { transition-delay: 0.9s; }
+.fl-content.is-active > :nth-child(7) { transition-delay: 1.05s; }
 
 .fl-cta {
   display: inline-flex;
@@ -369,126 +371,327 @@
   transform: translateX(4px);
 }
 
-/* ---------- PRICE & BUY NOW BUTTON ---------- */
-.fl-price-section {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding: 1.2rem 0;
-  border-top: 1px solid rgba(196, 30, 30, 0.2);
-  border-bottom: 1px solid rgba(196, 30, 30, 0.2);
-}
-
-.fl-price {
-  display: flex;
-  align-items: baseline;
-  gap: 0.3rem;
-  flex: 1;
-}
-
-.fl-price-currency {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: #DC143C;
-  line-height: 1;
-}
-
-.fl-price-amount {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #DC143C;
-  line-height: 1;
-  font-family: var(--serif);
-}
-
-.fl-price-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ink);
-  opacity: 0.6;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-left: 0.2rem;
-}
-
-.fl-buy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 999px;
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 
-    0 8px 24px rgba(220, 20, 60, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+/* ============================================
+   PRICE + BUY NOW  (smoked glass, 3D)
+   - Frosted smoky-glass slab (video ke upar readable)
+   - Buy Now = 3D glass keycap: moti kinara, gloss, tilt, dhuaan
+   - Price = chrome-glass numerals
+   ============================================ */
+.pb {
+  --pb-gold-1: #F8E3B8;
+  --pb-gold-2: #D9AE63;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.1rem 1.6rem;
+  margin-top: 1.6rem;
+  padding: 1.15rem 1.3rem 1.35rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 42%, rgba(0, 0, 0, 0.28) 100%),
+    rgba(22, 19, 22, 0.46);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 34px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
 }
 
-.fl-buy-btn::before {
+/* ---------- DHUAAN (smoke) ----------
+   do blurry blobs jo dheere dheere behte hain */
+.pb-smoke {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pb-smoke::before,
+.pb-smoke::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.3), 
-    transparent
-  );
-  transition: left 0.5s ease;
+  border-radius: 50%;
+  filter: blur(18px);
 }
 
-.fl-buy-btn:hover::before {
-  left: 100%;
+.pb-smoke::before {
+  width: 62%;
+  height: 170%;
+  left: -12%;
+  top: -35%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.3), transparent);
+  animation: pb-drift-a 9s ease-in-out infinite alternate;
 }
 
-.fl-buy-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 32px rgba(220, 20, 60, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+.pb-smoke::after {
+  width: 55%;
+  height: 150%;
+  right: -10%;
+  top: -20%;
+  background: radial-gradient(closest-side, rgba(190, 195, 210, 0.26), transparent);
+  animation: pb-drift-b 11s ease-in-out infinite alternate;
 }
 
-.fl-buy-btn:active {
-  transform: translateY(0);
-  box-shadow: 
-    0 4px 12px rgba(220, 20, 60, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+@keyframes pb-drift-a {
+  0%   { transform: translate3d(0, 6%, 0) scale(1); }
+  100% { transform: translate3d(38%, -10%, 0) scale(1.25); }
 }
 
-.fl-buy-icon {
-  font-size: 1.2rem;
-  line-height: 1;
+@keyframes pb-drift-b {
+  0%   { transform: translate3d(0, -4%, 0) scale(1.1); }
+  100% { transform: translate3d(-42%, 12%, 0) scale(0.9); }
 }
 
-.fl-buy-text {
+/* ---------- PRICE (chrome glass numerals) ---------- */
+.pb-price {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pb-amount {
+  display: inline-flex;
+  align-items: flex-start;
+  font-family: var(--serif);
+  font-size: 3.4rem;
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E4E6EE 40%, #8C909E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.35)) drop-shadow(0 8px 14px rgba(0, 0, 0, 0.55));
 }
 
-.fl-buy-arrow {
-  font-size: 1.2rem;
-  line-height: 1;
-  transition: transform 0.3s ease;
+.pb-cur {
+  margin: 0.28em 0.12em 0 0;
+  font-size: 0.42em;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
-.fl-buy-btn:hover .fl-buy-arrow {
-  transform: translateX(4px);
+.pb-unit {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
 }
 
+/* ---------- BUY NOW (3D glass keycap) ---------- */
+.pb-btn {
+  --rx: 0deg;
+  --ry: 0deg;
+  --lift: 0px;
+  --mx: 50%;
+  --my: 30%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  flex: 1 1 190px;
+  min-width: 0;
+  max-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0.45rem 0.45rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.05) 38%, rgba(0, 0, 0, 0.5) 100%),
+    rgba(38, 34, 40, 0.78);
+  color: #FFFFFF;
+  font-family: var(--sans);
+  cursor: pointer;
+  transform: perspective(700px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));
+  transform-style: preserve-3d;
+  /* moti glass kinara (neeche ka 6px solid edge) + gehra shadow */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -10px 16px rgba(0, 0, 0, 0.5),
+    0 6px 0 rgba(8, 6, 9, 0.9),
+    0 22px 30px rgba(0, 0, 0, 0.55);
+  transition: transform 0.18s ease-out, box-shadow 0.25s ease, border-color 0.3s ease;
+}
 
+/* upar ka gloss (glass ki chamakdar parat) */
+.pb-btn::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  height: 48%;
+  border-radius: 999px 999px 60% 60% / 999px 999px 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.06) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* mouse ke saath chalti roshni */
+.pb-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 48%);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+.pb-smoke-btn::before {
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.22), transparent);
+  filter: blur(10px);
+}
+
+.pb-smoke-btn::after {
+  background: radial-gradient(closest-side, rgba(180, 185, 205, 0.2), transparent);
+  filter: blur(10px);
+}
+
+.pb-ico,
+.pb-go {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+/* cart: glass moti (orb) */
+.pb-ico {
+  background:
+    radial-gradient(circle at 30% 24%, #FFFFFF 0%, rgba(255, 255, 255, 0.55) 18%, rgba(248, 227, 184, 0.45) 45%, rgba(150, 105, 40, 0.65) 100%);
+  color: #2A1A05;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 -4px 8px rgba(110, 70, 20, 0.45),
+    0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.pb-label {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.pb-go {
+  background: radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.06) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.pb-go svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pb-btn:hover {
+  --lift: -3px;
+  border-color: rgba(248, 227, 184, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -10px 16px rgba(0, 0, 0, 0.45),
+    0 9px 0 rgba(8, 6, 9, 0.9),
+    0 30px 38px rgba(0, 0, 0, 0.6),
+    0 0 0 4px rgba(248, 227, 184, 0.1);
+}
+
+.pb-btn:hover .pb-go {
+  background: radial-gradient(circle at 30% 24%, #FFFFFF 0%, rgba(248, 227, 184, 0.8) 40%, rgba(217, 174, 99, 0.9) 100%);
+  color: #2A1A05;
+}
+
+.pb-btn:hover .pb-go svg {
+  transform: translateX(2px);
+}
+
+/* dabane pe keycap neeche baith jaata hai */
+.pb-btn:active {
+  --lift: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.5),
+    0 2px 0 rgba(8, 6, 9, 0.9),
+    0 8px 14px rgba(0, 0, 0, 0.5);
+}
+
+.pb-btn:focus-visible {
+  outline: 3px solid var(--pb-gold-1);
+  outline-offset: 4px;
+}
+
+/* .fl-content me pointer-events none hai, isliye active hone pe button ko click-able karna zaroori hai */
+.fl-content.is-active .pb-btn {
+  pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+  .pb {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem 1.1rem;
+    gap: 0.9rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .pb-amount {
+    font-size: 2.7rem;
+  }
+
+  .pb-btn {
+    max-width: none;
+  }
+
+  .pb-ico,
+  .pb-go {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+
+  .pb-label {
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-smoke::before,
+  .pb-smoke::after {
+    animation: none;
+  }
+
+  .pb-btn,
+  .pb-go,
+  .pb-go svg {
+    transition: none;
+  }
+}
+
+/* ---------- TAGLINE / TITLE / TEXT ---------- */
 .fl-tagline {
   font-family: var(--sans);
   text-transform: none;
@@ -530,7 +733,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #FFFFFF;
-  text-shadow: 
+  text-shadow:
     0 2px 4px rgba(0, 0, 0, 0.3),
     0 0 20px rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
@@ -1501,29 +1704,6 @@
     margin-top: 1rem;
     padding: 0.7rem 1.2rem;
     font-size: 0.8rem;
-  }
-
-  /* Price & Buy Button - Mobile */
-  .fl-price-section {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  .fl-price-amount {
-    font-size: 2.5rem;
-  }
-
-  .fl-price-currency {
-    font-size: 1.5rem;
-  }
-
-  .fl-buy-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.95rem;
   }
 
   .fl-final-cans {

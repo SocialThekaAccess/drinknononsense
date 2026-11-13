@@ -42,6 +42,7 @@ const baseFlavours = [
     text: 'A bold mango-flavoured caffeinated protein drink with a tropical twist.',
     tags: ['Zero Sugar', 'Dietary Fiber', '250 ml'],
     notes: ['tropical twist', 'bold flavour'],
+    price: 200,
     scale: 1,
     video: mangoVideo,
     bg: 'linear-gradient(135deg, #FFB84D 0%, #FF8C42 100%)',
@@ -56,6 +57,7 @@ const baseFlavours = [
     text: 'The bold character of coffee with a fizzy cola-inspired twist.',
     tags: ['Zero Sugar', 'Dietary Fiber', '250 ml'],
     notes: ['coffee + cola', 'chaos follows'],
+    price: 200,
     scale: 1.02,
     video: coffeeVideo,
     bg: 'linear-gradient(135deg, #DC143C 0%, #8B0000 100%)',
@@ -70,6 +72,7 @@ const baseFlavours = [
     text: 'A vibrant wild berry flavour that brings a refreshing twist to your everyday routine.',
     tags: ['Zero Sugar', 'Dietary Fiber', '250 ml'],
     notes: ['never basic', 'wild berry'],
+    price: 200,
     scale: 1.03,
     video: classicVideo,
     bg: 'linear-gradient(135deg, #4169E1 0%, #0047AB 100%)',
@@ -156,6 +159,112 @@ function useIsMobile(query = '(max-width: 900px)') {
     }
   }, [query])
   return isMobile
+}
+
+/* ============================================
+   PRICE + BUY NOW (smoked glass 3D)
+   ============================================ */
+function CartIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.1L20.5 8H6.1" />
+      <circle cx="9.5" cy="19.5" r="1.4" />
+      <circle cx="17" cy="19.5" r="1.4" />
+    </svg>
+  )
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  )
+}
+
+// Apna cart / checkout yahan jodo (f = flavour object)
+const handleBuy = (f) => {
+  // Redirect to product page based on flavour
+  const productRoutes = {
+    mango: '/product/mango',
+    coffee: '/product/coffee',
+    classic: '/product/classic'
+  }
+  
+  const route = productRoutes[f.id]
+  if (route) {
+    window.location.href = route
+  } else {
+    console.log('Buy now:', f.id, f.price)
+  }
+}
+
+function PriceBuy({ price = 200, unit = 'per can', label = 'Buy now', onBuy }) {
+  // mouse ke saath button halka 3D tilt hota hai + glass pe roshni chalti hai
+  const onMove = (e) => {
+    const el = e.currentTarget
+    const r = el.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width - 0.5
+    const y = (e.clientY - r.top) / r.height - 0.5
+    el.style.setProperty('--ry', `${(x * 14).toFixed(2)}deg`)
+    el.style.setProperty('--rx', `${(-y * 14).toFixed(2)}deg`)
+    el.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`)
+    el.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`)
+  }
+  const onLeave = (e) => {
+    const el = e.currentTarget
+    el.style.setProperty('--rx', '0deg')
+    el.style.setProperty('--ry', '0deg')
+    el.style.setProperty('--mx', '50%')
+    el.style.setProperty('--my', '30%')
+  }
+
+  return (
+    <div className="pb">
+      <span className="pb-smoke" aria-hidden="true" />
+
+      <div className="pb-price" aria-label={`Price ${price} rupees ${unit}`}>
+        <span className="pb-amount">
+          <span className="pb-cur">₹</span>
+          {price}
+        </span>
+        <span className="pb-unit">{unit}</span>
+      </div>
+
+      <button
+        type="button"
+        className="pb-btn"
+        onClick={onBuy}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+      >
+        <span className="pb-smoke pb-smoke-btn" aria-hidden="true" />
+        <span className="pb-ico"><CartIcon /></span>
+        <span className="pb-label">{label}</span>
+        <span className="pb-go"><ArrowIcon /></span>
+      </button>
+    </div>
+  )
 }
 
 /* ============================================
@@ -726,21 +835,10 @@ function OurFlavours() {
                       <span key={tg} className="fl-tag">{tg}</span>
                     ))}
                   </div>
-                  
-                  {/* Price & Buy Now Button */}
-                  <div className="fl-price-section">
-                    <div className="fl-price">
-                      <span className="fl-price-currency">₹</span>
-                      <span className="fl-price-amount">200</span>
-                      <span className="fl-price-label">per can</span>
-                    </div>
-                    <button className="fl-buy-btn">
-                      <span className="fl-buy-icon">🛒</span>
-                      <span className="fl-buy-text">BUY NOW</span>
-                      <span className="fl-buy-arrow">→</span>
-                    </button>
-                  </div>
-                  
+
+                  {/* Price & Buy Now */}
+                  <PriceBuy price={f.price} onBuy={() => handleBuy(f)} />
+
                   <a href="#stats" className="fl-cta">
                     {CTA_LABEL}
                     <span aria-hidden="true">&rarr;</span>
@@ -813,8 +911,8 @@ function OurFlavours() {
                   >
                     {isMobile && phaseB && i === active ? (
                       /* MOBILE focus mode: SIRF background video, can ki jagah khaali */
-                      <div style={{ 
-                        width: '100%', 
+                      <div style={{
+                        width: '100%',
                         height: '100%',
                         opacity: 0,
                         pointerEvents: 'none'

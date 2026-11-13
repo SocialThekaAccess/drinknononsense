@@ -16,6 +16,11 @@ const TermsConditions = lazy(() => import('./Component/TermsConditions'))
 const PrivacyPolicy = lazy(() => import('./Component/PrivacyPolicy'))
 const ReturnPolicy = lazy(() => import('./Component/ReturnPolicy'))
 
+// Product Pages
+const ProductMango = lazy(() => import('./pages/ProductMango'))
+const ProductCoffee = lazy(() => import('./pages/ProductCoffee'))
+const ProductClassic = lazy(() => import('./pages/ProductClassic'))
+
 // Enhanced loading component with skeleton
 function LoadingFallback() {
   return (
@@ -102,6 +107,30 @@ function App() {
           element={
             <Suspense fallback={<LoadingFallback />}>
               <ReturnPolicy />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="/product/mango" 
+          element={
+            <Suspense fallback={<LoadingFallback />}>
+              <ProductMango />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="/product/coffee" 
+          element={
+            <Suspense fallback={<LoadingFallback />}>
+              <ProductCoffee />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="/product/classic" 
+          element={
+            <Suspense fallback={<LoadingFallback />}>
+              <ProductClassic />
             </Suspense>
           } 
         />
