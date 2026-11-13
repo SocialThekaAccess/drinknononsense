@@ -416,3 +416,12 @@
 .cc-more-name { font-weight: 700; letter-spacing: -0.035em; }
 .cc-more-tag { font-weight: 500; }
 .cc-bar-name { font-weight: 700; letter-spacing: -0.02em; }
+
+/* ===== MOBILE FIX: 3D can ke peeche white box nahi aana chahiye =====
+   Phone ka dark mode / force-dark iframe ko opaque (white) bana deta hai.
+   color-scheme: light dene se iframe transparent rehta hai (homepage jaisa). */
+.cc-can {
+  color-scheme: light;
+  background: transparent !important;
+  border: 0;
+}

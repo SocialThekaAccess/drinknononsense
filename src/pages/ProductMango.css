@@ -416,3 +416,12 @@
 .mm-more-name { font-weight: 700; letter-spacing: -0.035em; }
 .mm-more-tag { font-weight: 500; }
 .mm-bar-name { font-weight: 700; letter-spacing: -0.02em; }
+
+/* ===== MOBILE FIX: 3D can ke peeche white box nahi aana chahiye =====
+   Phone ka dark mode / force-dark iframe ko opaque (white) bana deta hai.
+   color-scheme: light dene se iframe transparent rehta hai (homepage jaisa). */
+.mm-can {
+  color-scheme: light;
+  background: transparent !important;
+  border: 0;
+}
