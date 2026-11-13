@@ -759,11 +759,17 @@ function OurFlavours() {
             const rot = i === 0 ? num(Math.sin(t * Math.PI) * -8, 2) : 0
 
             let opacity
-            if (phaseB) opacity = i === active ? 1 : 0
-            else opacity = i === 0 ? 1 : num(clamp(1 - t * 1.6), 3)
-
-            // mobile pe teeno cans lineup me dikhne chahiye (center wala bhi)
-            if (isMobile && !phaseB) opacity = num(clamp(1 - t * 1.6), 3)
+            if (phaseB) {
+              opacity = i === active ? 1 : 0
+            } else {
+              // Mobile pe: teeno cans dikhne chahiye lineup me
+              if (isMobile) {
+                opacity = num(clamp(1 - t * 1.6), 3)
+              } else {
+                // Desktop pe: sirf center can (i === 0) dikhta hai initially
+                opacity = i === 0 ? 1 : num(clamp(1 - t * 1.6), 3)
+              }
+            }
 
             const imgState = !phaseB
               ? 'is-active'
