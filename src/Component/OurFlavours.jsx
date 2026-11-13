@@ -22,7 +22,7 @@ const CTA_LABEL = 'Discover the flavour'
 
 // Mobile pe 3D: focus phase me active can hamesha 3D.
 // Lineup (teeno cans) me bhi 3D chahiye to true karo (phone pe heavy ho sakta hai).
-const MOBILE_LINEUP_3D = false
+const MOBILE_LINEUP_3D = true
 
 // "THE FLAVOURS" ki jagah moving marquee ka text
 const MARQUEE_TEXT =
@@ -797,23 +797,15 @@ function OurFlavours() {
                     style={{ transform: `rotateY(${i === active ? num(sway, 2) : 0}deg)` }}
                   >
                     {isMobile && phaseB && i === active ? (
-                      /* MOBILE focus mode: video dikhao instead of 3D model (lighter & smoother) */
-                      <video
-                        src={f.video}
-                        className={`fl-img ${imgState}`}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'contain',
-                          pointerEvents: 'none'
-                        }}
-                      />
+                      /* MOBILE focus mode: SIRF background video, can ki jagah khaali */
+                      <div style={{ 
+                        width: '100%', 
+                        height: '100%',
+                        opacity: 0,
+                        pointerEvents: 'none'
+                      }} />
                     ) : isMobile && !MOBILE_LINEUP_3D && !phaseB ? (
-                      /* MOBILE lineup: halki PNG (3 WebGL iframes phone pe heavy hote hain) */
+                      /* MOBILE lineup: PNG images */
                       <img
                         src={f.img}
                         alt={f.alt}
@@ -821,7 +813,7 @@ function OurFlavours() {
                         draggable="false"
                       />
                     ) : (
-                      /* 3D model iframe: desktop pe sab */
+                      /* 3D model iframe: desktop pe sab, mobile lineup me bhi */
                       <iframe
                         src={f.model3D}
                         title={`3D ${f.title}`}
