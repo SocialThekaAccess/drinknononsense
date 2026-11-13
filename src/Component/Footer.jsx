@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 function Footer() {
@@ -9,6 +10,14 @@ function Footer() {
         </div>
         
         <p className="footer-brand">NO NONSENSE — NOT YOUR ORDINARY DRINK.</p>
+        
+        <div className="footer-links">
+          <Link to="/terms-conditions" className="footer-link">Terms & Conditions</Link>
+          <span className="footer-separator">|</span>
+          <Link to="/privacy-policy" className="footer-link">Privacy Policy</Link>
+          <span className="footer-separator">|</span>
+          <Link to="/return-policy" className="footer-link">Return & Refund Policy</Link>
+        </div>
         
         <div className="footer-warning">
           <p className="footer-warning-title">PRODUCT INFORMATION</p>

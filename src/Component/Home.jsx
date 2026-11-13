@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import MobileOptimizedVideo from '../utils/MobileOptimizedVideo'
 import './Home.css'
 
 function Home() {
@@ -19,17 +20,22 @@ function Home() {
       <Helmet>
         <title>No Nonsense | Caffeinated Protein Drink</title>
         <meta name="description" content="Zero sugar, protein-infused energy drinks with bold flavours. Built for those who refuse to compromise." />
+        {/* Mobile optimization meta tags */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Helmet>
       
       <section className="hero" id="home">
-        {/* Video background */}
-        <video
+        {/* Mobile-optimized lazy loaded video background */}
+        <MobileOptimizedVideo
           className="hero-video"
           src="/3inOne.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          playsInline={true}
+          forceLoad={false}
         />
 
         {/* Dark overlay for better text visibility */}
