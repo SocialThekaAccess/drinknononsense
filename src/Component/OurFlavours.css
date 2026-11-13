@@ -1831,7 +1831,7 @@
   pointer-events: auto;
 }
 
-/* ===== MOBILE FIX (SABSE END ME RAHE) =====
+/* ===== MOBILE FIX =====
    Mobile pe can = PNG image. Koi iframe, koi tilt, koi touch-capture. */
 @media (max-width: 900px) {
   .fl-can {
@@ -1872,5 +1872,90 @@
 
   .fl-frame-bg {
     border-radius: 22px;
+  }
+}
+
+/* ============================================================
+   FIT FIX (desktop): content hamesha colour frame ke andar rahe
+   Saari sizes screen ki height (vh) ke hisaab se scale hoti hain,
+   isliye chhoti laptop screen pe bhi kuch cut nahi hota.
+   Mobile (<= 900px) ke styles ko ye touch nahi karta.
+   ============================================================ */
+@media (min-width: 901px) {
+  .fl-content {
+    width: min(34vw, 470px);
+    max-height: 88vh;
+  }
+
+  .fl-tagline {
+    font-size: clamp(0.8rem, 2vh, 1rem);
+    margin-bottom: 1vh;
+  }
+
+  .fl-content-title {
+    font-size: clamp(1.8rem, min(4.4vw, 7vh), 4rem);
+    line-height: 1.05;
+    margin-bottom: 1.8vh;
+  }
+
+  .fl-text {
+    font-size: clamp(0.85rem, 2.1vh, 1.05rem);
+    line-height: 1.5;
+    margin-bottom: 2vh;
+  }
+
+  .fl-protein-badge {
+    font-size: clamp(0.72rem, 1.9vh, 1.05rem);
+    padding: 0.4em 1em;
+    margin-bottom: 1.4vh;
+  }
+
+  .fl-tags {
+    gap: 0.4rem;
+  }
+
+  .fl-tag {
+    padding: 0.35em 0.85em;
+    font-size: clamp(0.7rem, 1.7vh, 0.85rem);
+  }
+
+  /* price + buy now block */
+  .pb {
+    margin-top: 2.2vh;
+    padding: 1.6vh 1.2rem 1.9vh;
+    gap: 1vh 1.4rem;
+    border-radius: 20px;
+  }
+
+  .pb-amount {
+    font-size: clamp(2.2rem, 7vh, 3.4rem);
+  }
+
+  .pb-unit {
+    font-size: clamp(0.62rem, 1.5vh, 0.72rem);
+  }
+
+  .pb-ico,
+  .pb-go {
+    width: clamp(2rem, 5.6vh, 2.5rem);
+    height: clamp(2rem, 5.6vh, 2.5rem);
+  }
+
+  .pb-label {
+    font-size: clamp(0.74rem, 1.9vh, 0.88rem);
+  }
+
+  /* discover the flavour button */
+  .fl-cta {
+    margin-top: 2vh;
+    padding: 0.65em 1.3em;
+    font-size: clamp(0.74rem, 1.9vh, 0.9rem);
+  }
+}
+
+/* bahut chhoti height (< 560px): protein badge hata do taaki jagah bache */
+@media (min-width: 901px) and (max-height: 560px) {
+  .fl-protein-badge {
+    display: none;
   }
 }

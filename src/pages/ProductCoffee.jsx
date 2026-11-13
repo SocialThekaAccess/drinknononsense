@@ -1,151 +1,170 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import './ProductCoffee.css'
 
+const p = {
+  lines: ['Coffee', 'Cola'],
+  ghost: 'Coffee',
+  tagline: 'Coffee meets cola. Chaos follows.',
+  description:
+    'The bold character of coffee with a fizzy, cola-inspired twist. This is not your average energy drink. It is a collision of flavours for people who refuse to play it safe. Zero sugar, all attitude.',
+  ingredients:
+    'Carbonated water, protein blend (whey protein isolate, milk protein concentrate), natural coffee extract, natural cola flavour, caffeine, vitamins (B2, B3, B6, B12), prebiotic fibre (chicory root), natural sweeteners (erythritol, sucralose), caramel colour, citric acid, preservatives.',
+  model: '/3DCanCoffeecola.html',
+  price: 200,
+  nutrition: [['Energy','25 kcal'],['Protein','6 g'],['Carbohydrates','4 g'],['Total sugar','0 g'],['Dietary fibre','3 g'],['Caffeine','75 mg']],
+}
+
+const others = [
+  { path: '/product/mango', name: 'Mango Mayhem', tagline: 'A little tropical, a lot of trouble.', accent: '#ffb02e' },
+  { path: '/product/classic', name: 'Classic Wild Berry', tagline: 'Berry bold, never basic.', accent: '#9b8cff' },
+]
+
 function ProductCoffee() {
   const [quantity, setQuantity] = useState(1)
-  const price = 200
+  const [showBar, setShowBar] = useState(false)
+  const actionsRef = useRef(null)
+  const total = p.price * quantity
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  // Sticky buy bar appears once the main buy button scrolls out of view
+  useEffect(() => {
+    const el = actionsRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => setShowBar(!e.isIntersecting && e.boundingClientRect.top < 0),
+      { threshold: 0 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  const dec = () => setQuantity((q) => Math.max(1, q - 1))
+  const inc = () => setQuantity((q) => q + 1)
+  const handleCheckout = () => {
+    // TODO: hook up your real checkout / cart here
+  }
+
+  const Qty = () => (
+    <div className="cc-qty" role="group" aria-label="Quantity">
+      <button onClick={dec} aria-label="Decrease quantity">−</button>
+      <output aria-live="polite">{quantity}</output>
+      <button onClick={inc} aria-label="Increase quantity">+</button>
+    </div>
+  )
 
   return (
     <>
       <Helmet>
-        <title>Coffee Cola - No Nonsense Energy Drink</title>
-        <meta name="description" content="Coffee meets cola chaos. Zero sugar, 6g protein, 75mg caffeine." />
+        <title>{`${p.lines.join(' ')} | No Nonsense`}</title>
+        <meta name="description" content={`${p.tagline} Zero sugar, 6g protein, 75mg caffeine.`} />
       </Helmet>
 
-      <div className="product-page">
-        <Link to="/" className="product-back-btn">← Back to Home</Link>
+      <div className="cc">
+        {/* ───────── Hero ───────── */}
+        <header className="cc-hero">
+          <Link to="/" className="cc-back">‹ Home</Link>
 
-        <div className="product-container">
-          {/* Left Side - 3D Model */}
-          <div className="product-images">
-            <div className="product-main-image">
-              <iframe
-                src="/3DCanCoffeecola.html"
-                title="Coffee Cola 3D Model"
-                className="product-3d-model"
-                sandbox="allow-scripts allow-same-origin"
-              />
-              <div className="product-badge">Zero Sugar</div>
-            </div>
-            <div className="product-secondary-image">
-              <img src="/CoffeeBack.png" alt="Nutrition Facts" className="product-img-back" />
-            </div>
+          <div className="cc-stage">
+            <span className="cc-ghost" aria-hidden="true">{p.ghost}</span>
+            <div className="cc-spot" aria-hidden="true" />
+            <iframe
+              src={p.model}
+              title={`${p.lines.join(' ')} 3D can`}
+              className="cc-can"
+              sandbox="allow-scripts allow-same-origin"
+            />
+            <div className="cc-floor" aria-hidden="true" />
+            <span className="cc-seal">Zero sugar</span>
+            <span className="cc-hint">Drag to turn the can</span>
           </div>
 
-          {/* Right Side - Product Info */}
-          <div className="product-info">
-            <div className="product-category">ENERGY DRINK</div>
-            <h1 className="product-title">COFFEE COLA</h1>
-            <p className="product-subtitle">Coffee meets cola, Chaos Follows</p>
-            
-            <div className="product-price">
-              <span className="price-currency">₹</span>
-              <span className="price-amount">{price}</span>
-              <span className="price-label">per can (250ml)</span>
+          <div className="cc-info">
+            <p className="cc-kind">Protein energy drink · 250 ml</p>
+            <h1 className="cc-title">
+              {p.lines.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
+            </h1>
+            <p className="cc-tagline">{p.tagline}</p>
+            <p className="cc-desc">{p.description}</p>
+
+            <div className="cc-price">
+              <span className="cc-cur">₹</span>
+              <span className="cc-amt">{p.price}</span>
+              <span className="cc-per">per can</span>
             </div>
 
-            <p className="product-description">
-              The bold character of coffee with a fizzy cola-inspired twist. This isn't your 
-              average energy drink - it's a collision of flavors designed for those who refuse 
-              to play it safe. Zero sugar, all attitude.
-            </p>
-
-            {/* Key Features */}
-            <div className="product-features">
-              <div className="feature-item">
-                <span className="feature-icon">💪</span>
-                <span className="feature-text">6g Protein</span>
-              </div>
-              <div className="feature-item">
-                <span className="feature-icon">⚡</span>
-                <span className="feature-text">75mg Caffeine</span>
-              </div>
-              <div className="feature-item">
-                <span className="feature-icon">🚫</span>
-                <span className="feature-text">Zero Sugar</span>
-              </div>
-              <div className="feature-item">
-                <span className="feature-icon">🌿</span>
-                <span className="feature-text">Dietary Fiber</span>
-              </div>
-            </div>
-
-            {/* Ingredients */}
-            <div className="product-ingredients">
-              <h3>Ingredients</h3>
-              <p>
-                Carbonated Water, Protein Blend (Whey Protein Isolate, Milk Protein Concentrate), 
-                Natural Coffee Extract, Natural Cola Flavour, Caffeine, Vitamins (B2, B3, B6, B12), 
-                Prebiotic Fiber (Chicory Root), Natural Sweeteners (Erythritol, Sucralose), 
-                Caramel Color, Citric Acid, Preservatives.
-              </p>
-            </div>
-
-            {/* Nutrition Facts */}
-            <div className="product-nutrition">
-              <h3>Nutrition Facts (per 250ml)</h3>
-              <div className="nutrition-grid">
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Protein</span>
-                  <span className="nutrition-value">6g</span>
-                </div>
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Caffeine</span>
-                  <span className="nutrition-value">75mg</span>
-                </div>
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Calories</span>
-                  <span className="nutrition-value">25 kcal</span>
-                </div>
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Sugar</span>
-                  <span className="nutrition-value">0g</span>
-                </div>
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Fiber</span>
-                  <span className="nutrition-value">3g</span>
-                </div>
-                <div className="nutrition-item">
-                  <span className="nutrition-label">Carbs</span>
-                  <span className="nutrition-value">4g</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Quantity Selector & Checkout */}
-            <div className="product-actions">
-              <div className="quantity-selector">
-                <button 
-                  className="qty-btn" 
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  aria-label="Decrease quantity"
-                >
-                  -
-                </button>
-                <span className="qty-value">{quantity}</span>
-                <button 
-                  className="qty-btn" 
-                  onClick={() => setQuantity(quantity + 1)}
-                  aria-label="Increase quantity"
-                >
-                  +
-                </button>
-              </div>
-
-              <button className="checkout-btn">
-                <span className="checkout-icon">🛒</span>
-                <span className="checkout-text">PROCEED TO CHECKOUT</span>
-                <span className="checkout-price">₹{price * quantity}</span>
+            <div className="cc-actions" ref={actionsRef}>
+              <Qty />
+              <button className="cc-cta" onClick={handleCheckout}>
+                <span>Checkout</span>
+                <span className="cc-cta-total">₹{total}</span>
               </button>
             </div>
 
-            {/* Warning */}
-            <div className="product-warning">
-              ⚠️ Not recommended for children, pregnant or nursing women. Contains caffeine.
-            </div>
+            <p className="cc-warn">
+              Contains caffeine. Not recommended for children, pregnant or nursing women.
+            </p>
           </div>
+        </header>
+
+        {/* ───────── Spec strip ───────── */}
+        <section className="cc-specs" aria-label="Highlights">
+          <div><strong>6g</strong><span>Protein</span></div>
+          <div><strong>75mg</strong><span>Caffeine</span></div>
+          <div><strong>0g</strong><span>Sugar</span></div>
+          <div><strong>3g</strong><span>Dietary fibre</span></div>
+        </section>
+
+        {/* ───────── Details ───────── */}
+        <section className="cc-details">
+          <div>
+            <h2>What’s inside</h2>
+            <p className="cc-ingredients">{p.ingredients}</p>
+
+            </div>
+          <div>
+            <h2>Per 250 ml can</h2>
+            <dl className="cc-ledger">
+              {p.nutrition.map(([k, v]) => (
+                <div key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* ───────── Other flavours ───────── */}
+        <nav className="cc-more" aria-label="Other flavours">
+          <h2>Try another flavour</h2>
+          {others.map((o) => (
+            <Link
+              key={o.path}
+              to={o.path}
+              className="cc-more-row"
+              style={{ '--row-accent': o.accent }}
+            >
+              <span className="cc-more-name">{o.name}</span>
+              <span className="cc-more-tag">{o.tagline}</span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* ───────── Sticky buy bar ───────── */}
+        <div className={`cc-bar ${showBar ? 'is-on' : ''}`} aria-hidden={!showBar}>
+          <div className="cc-bar-name">{p.lines.join(' ')}</div>
+          <Qty />
+          <button className="cc-cta cc-cta-sm" onClick={handleCheckout} tabIndex={showBar ? 0 : -1}>
+            <span>Checkout</span>
+            <span className="cc-cta-total">₹{total}</span>
+          </button>
         </div>
       </div>
     </>
