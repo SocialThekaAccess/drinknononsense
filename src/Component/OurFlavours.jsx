@@ -813,13 +813,14 @@ function OurFlavours() {
                         draggable="false"
                       />
                     ) : (
-                      /* 3D model iframe: desktop pe sab, mobile lineup me bhi */
+                      /* 3D model iframe: desktop pe sab, mobile lineup me bhi - EAGER LOAD! */
                       <iframe
                         src={f.model3D}
                         title={`3D ${f.title}`}
                         className={`fl-img fl-3d-model ${imgState}`}
                         sandbox="allow-scripts allow-same-origin"
-                        loading="lazy"
+                        loading="eager"
+                        style={{ visibility: imgState === 'is-active' ? 'visible' : 'hidden' }}
                       />
                     )}
                   </div>

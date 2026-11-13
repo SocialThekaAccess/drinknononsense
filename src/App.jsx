@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import Preload3DModels from './utils/Preload3DModels'
 
 // Only critical components load immediately
 import Header from './Component/Header'
@@ -50,6 +51,9 @@ function LoadingFallback() {
 function App() {
   return (
     <div className="app">
+      {/* Preload 3D models in background for instant loading */}
+      <Preload3DModels />
+      
       <Routes>
         <Route 
           path="/" 
