@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import './ProductPage.css'
-import classicImage from '../assets/ClassicWildDrink.png'
-import classicBack from '/ClassicBack.png'
+import './ProductClassic.css'
+import classicFront from '../assets/ClassicWildDrink.png'
 
 function ProductClassic() {
   const [quantity, setQuantity] = useState(1)
@@ -23,11 +22,11 @@ function ProductClassic() {
           {/* Left Side - Product Images */}
           <div className="product-images">
             <div className="product-main-image">
-              <img src={classicImage} alt="Classic Wild Berry Front" className="product-img-front" />
+              <img src={classicFront} alt="Classic Wild Berry" className="product-img-front" />
               <div className="product-badge">Zero Sugar</div>
             </div>
             <div className="product-secondary-image">
-              <img src={classicBack} alt="Classic Wild Berry Back" className="product-img-back" />
+              <img src="/ClassicBack.png" alt="Nutrition Facts" className="product-img-back" />
             </div>
           </div>
 

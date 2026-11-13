@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import './ProductPage.css'
-import coffeeImage from '../assets/CoffeeCola (2).png'
-import coffeeBack from '/CoffeeBack.png'
+import './ProductCoffee.css'
+import coffeeFront from '../assets/CoffeeCola (2).png'
 
 function ProductCoffee() {
   const [quantity, setQuantity] = useState(1)
@@ -23,11 +22,11 @@ function ProductCoffee() {
           {/* Left Side - Product Images */}
           <div className="product-images">
             <div className="product-main-image">
-              <img src={coffeeImage} alt="Coffee Cola Front" className="product-img-front" />
+              <img src={coffeeFront} alt="Coffee Cola" className="product-img-front" />
               <div className="product-badge">Zero Sugar</div>
             </div>
             <div className="product-secondary-image">
-              <img src={coffeeBack} alt="Coffee Cola Back" className="product-img-back" />
+              <img src="/CoffeeBack.png" alt="Nutrition Facts" className="product-img-back" />
             </div>
           </div>
 

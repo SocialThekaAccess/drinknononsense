@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import './ProductPage.css'
-import mangoImage from '../assets/MangoDrink (2).png'
-import mangoBack from '/MangoBack.png'
+import './ProductMango.css'
+import mangoFront from '../assets/MangoDrink (2).png'
 
 function ProductMango() {
   const [quantity, setQuantity] = useState(1)
@@ -23,11 +22,11 @@ function ProductMango() {
           {/* Left Side - Product Images */}
           <div className="product-images">
             <div className="product-main-image">
-              <img src={mangoImage} alt="Mango Mayhem Front" className="product-img-front" />
+              <img src={mangoFront} alt="Mango Mayhem" className="product-img-front" />
               <div className="product-badge">Zero Sugar</div>
             </div>
             <div className="product-secondary-image">
-              <img src={mangoBack} alt="Mango Mayhem Back" className="product-img-back" />
+              <img src="/MangoBack.png" alt="Nutrition Facts" className="product-img-back" />
             </div>
           </div>
 
