@@ -629,6 +629,7 @@
   letter-spacing: -0.03em;
   text-transform: none;
   text-align: left;
+  color: var(--ink); /* Dark color for visibility on light background */
 }
 
 .fl-stats-title em {
@@ -645,6 +646,7 @@
   max-width: 36ch;
   line-height: 1.6;
   opacity: 0.75;
+  color: var(--ink); /* Dark color for mobile visibility */
 }
 
 .fl-stats-foot {
@@ -1107,6 +1109,7 @@
   text-transform: none;
   text-align: center;
   margin: 0;
+  color: var(--ink); /* Dark color for visibility */
 }
 
 .fl-final-title em {
@@ -1122,6 +1125,7 @@
   font-weight: 500;
   opacity: 0.75;
   margin: 1.2rem 0 0;
+  color: var(--ink); /* Dark color for visibility */
 }
 
 /* three cans grouped */
