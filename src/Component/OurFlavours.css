@@ -349,6 +349,7 @@
   padding: 0.85rem 1.5rem;
   border-radius: 999px;
   background: #FFFFFF;
+  border: none;
   color: #2a0d0d;
   font-family: var(--sans);
   font-size: 0.9rem;
@@ -356,11 +357,18 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
 }
 
 .fl-content.is-active .fl-cta {
   pointer-events: auto;
+}
+
+.fl-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .fl-cta span {

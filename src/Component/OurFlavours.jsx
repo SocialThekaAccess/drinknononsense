@@ -839,10 +839,13 @@ function OurFlavours() {
                   {/* Price & Buy Now */}
                   <PriceBuy price={f.price} onBuy={() => handleBuy(f)} />
 
-                  <a href="#stats" className="fl-cta">
+                  <button 
+                    onClick={() => handleBuy(f)} 
+                    className="fl-cta"
+                  >
                     {CTA_LABEL}
                     <span aria-hidden="true">&rarr;</span>
-                  </a>
+                  </button>
                 </div>
 
                 {/* drink ke aas paas 2 arrows (sirf desktop) */}

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import './ProductCoffee.css'
-import coffeeFront from '../assets/CoffeeCola (2).png'
 
 function ProductCoffee() {
   const [quantity, setQuantity] = useState(1)
@@ -19,10 +18,15 @@ function ProductCoffee() {
         <Link to="/" className="product-back-btn">← Back to Home</Link>
 
         <div className="product-container">
-          {/* Left Side - Product Images */}
+          {/* Left Side - 3D Model */}
           <div className="product-images">
             <div className="product-main-image">
-              <img src={coffeeFront} alt="Coffee Cola" className="product-img-front" />
+              <iframe
+                src="/3DCanCoffeecola.html"
+                title="Coffee Cola 3D Model"
+                className="product-3d-model"
+                sandbox="allow-scripts allow-same-origin"
+              />
               <div className="product-badge">Zero Sugar</div>
             </div>
             <div className="product-secondary-image">
