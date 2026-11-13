@@ -22,7 +22,7 @@ const CTA_LABEL = 'Discover the flavour'
 
 // Mobile pe 3D: focus phase me active can hamesha 3D.
 // Lineup (teeno cans) me bhi 3D chahiye to true karo (phone pe heavy ho sakta hai).
-const MOBILE_LINEUP_3D = false
+const MOBILE_LINEUP_3D = true
 
 // "THE FLAVOURS" ki jagah moving marquee ka text
 const MARQUEE_TEXT =
