@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
 <title>3D Can Mango Mayhem</title>
 <style>
 :root{--bg:#F1EBDF;--fg:#4B1111}
@@ -46,7 +47,7 @@ group.add(new THREE.Mesh(new THREE.CylinderGeometry(R,R,H,192,1,true),mat));
 const silver=new THREE.MeshStandardMaterial({color:0xdfe2e6,metalness:1,roughness:.3,envMapIntensity:1.0});
 silver.side=THREE.DoubleSide;
 // asli can jaisa profile: body -> neck (patla) -> rim ka mudha hua kinara -> andar ki lid
-const V=(r,y)=>new THREE.Vector2(r,y);
+const V=(r,y)=>new THREE.Vector2(r,y);  
 const neck=[V(1,0),V(.996,.04),V(.975,.10),V(.935,.18),V(.895,.255),V(.868,.31),V(.858,.345),
   V(.866,.372),V(.888,.39),V(.903,.405),V(.897,.422),V(.872,.432),V(.848,.428),V(.836,.414)];
 const lidTop=[V(.80,.396),V(.775,.368),V(.72,.358),V(.62,.357),V(0,.357)];

@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import MobileOptimizedVideo from '../utils/MobileOptimizedVideo'
 import './Home.css'
 
 function Home() {
@@ -27,15 +26,15 @@ function Home() {
       </Helmet>
       
       <section className="hero" id="home">
-        {/* Mobile-optimized lazy loaded video background */}
-        <MobileOptimizedVideo
+        {/* Hero video - loads immediately, no lazy loading */}
+        <video
           className="hero-video"
           src="/3inOne.mp4"
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          playsInline={true}
-          forceLoad={false}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
         />
 
         {/* Dark overlay for better text visibility */}

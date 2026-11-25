@@ -1,0 +1,23 @@
+# Prevent indexing of 3D model files and media
+/3DCanClassicWildBerry.html
+  X-Robots-Tag: noindex, nofollow
+/3DCanCoffeecola.html
+  X-Robots-Tag: noindex, nofollow
+/Can3DMango.html
+  X-Robots-Tag: noindex, nofollow
+
+# Prevent direct access to media files from being indexed
+/*.mp4
+  X-Robots-Tag: noindex
+/*.png
+  X-Robots-Tag: noindex
+/*.svg
+  X-Robots-Tag: noindex
+/*.jpg
+  X-Robots-Tag: noindex
+
+# Service worker and manifest
+/sw.js
+  X-Robots-Tag: noindex
+/manifest.json
+  X-Robots-Tag: noindex

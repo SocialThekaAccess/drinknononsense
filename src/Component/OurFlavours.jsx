@@ -3,6 +3,7 @@ import './OurFlavours.css'
 import mangoDrink from '../assets/MangoDrink (2).png'
 import coffeeCola from '../assets/CoffeeCola (2).png'
 import classicWild from '../assets/ClassicWildDrink.png'
+import Lazy3DIframe from '../utils/Lazy3DIframe'
 
 // 3D HTML Models paths - Updated for production
 const mango3D = '/Can3DMango.html'
@@ -931,13 +932,11 @@ function OurFlavours() {
                         draggable="false"
                       />
                     ) : (
-                      /* 3D model iframe: desktop pe sab, mobile lineup me bhi - EAGER LOAD! */
-                      <iframe
+                      /* 3D model iframe: LAZY LOAD for performance! */
+                      <Lazy3DIframe
                         src={f.model3D}
                         title={`3D ${f.title}`}
                         className={`fl-img fl-3d-model ${imgState}`}
-                        sandbox="allow-scripts allow-same-origin"
-                        loading="eager"
                         style={{ visibility: imgState === 'is-active' ? 'visible' : 'hidden' }}
                       />
                     )}

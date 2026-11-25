@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import Lazy3DIframe from '../utils/Lazy3DIframe'
 import './ProductMango.css'
 
 const p = {
@@ -72,11 +73,10 @@ function ProductMango() {
           <div className="mm-stage">
             <span className="mm-ghost" aria-hidden="true">{p.ghost}</span>
             <div className="mm-spot" aria-hidden="true" />
-            <iframe
+            <Lazy3DIframe
               src={p.model}
               title={`${p.lines.join(' ')} 3D can`}
               className="mm-can"
-              sandbox="allow-scripts allow-same-origin"
             />
             <div className="mm-floor" aria-hidden="true" />
             <span className="mm-seal">Zero sugar</span>

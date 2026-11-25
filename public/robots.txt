@@ -1,0 +1,29 @@
+# Allow all pages except 3D model files and media
+User-agent: *
+
+# Block 3D model HTML files (these are only for iframe embedding)
+Disallow: /3DCanClassicWildBerry.html
+Disallow: /3DCanCoffeecola.html
+Disallow: /Can3DMango.html
+
+# Block direct access to media files
+Disallow: /*.mp4$
+Disallow: /*.png$
+Disallow: /*.svg$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+
+# Block service worker and manifest
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Allow main pages
+Allow: /
+Allow: /product/
+Allow: /scan
+Allow: /terms-conditions
+Allow: /privacy-policy
+Allow: /return-policy
+
+# Sitemap location
+Sitemap: https://drinknononsense.com/sitemap.xml

@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     
+    <!-- Block All Analytics & Tracking -->
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="x-dns-prefetch-control" content="off">
+    
     <!-- Favicons - No Nonsense Logo -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
@@ -60,6 +64,24 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
+
+    <!-- Block Analytics & Tracking -->
+    <script>
+      // Disable Google Analytics globally
+      window['ga-disable-all'] = true;
+      
+      // Block dataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push = function() { return 0; };
+      
+      // Block gtag
+      window.gtag = function() { return false; };
+      
+      // Block common analytics
+      window._gaq = { push: function() {} };
+      window._gat = { _getTracker: function() { return { _trackPageview: function() {} }; } };
+    </script>
+
     <!-- Register Service Worker for offline support -->
     <script>
       if ('serviceWorker' in navigator) {
